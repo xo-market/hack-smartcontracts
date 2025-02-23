@@ -182,7 +182,7 @@ contract MultiOutcomeMarket is IMultiOutcomeMarket, MultiOutcomeMarketStorage, A
     {
         BaseStorage storage $ = _getStorage();
         Market storage market = $.markets[_marketId];
-        market.winningOutcome = _winningOutcome;
+        market.winningOutcome = uint128(market.outcomeTokenStartIndex + _winningOutcome);
         market.resolvedAt = uint40(block.timestamp);
         market.status = MarketStatus.RESOLVED;
         market.resolver = msg.sender;
